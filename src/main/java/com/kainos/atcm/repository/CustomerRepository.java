@@ -1,13 +1,11 @@
 package com.kainos.atcm.repository;
 
 import com.kainos.atcm.domain.customer.Customer;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
 public class CustomerRepository {
     private HashMap<UUID, Customer> dataStore = new HashMap<>();
 

@@ -4,16 +4,12 @@ import com.kainos.atcm.domain.cart.CartProduct;
 import com.kainos.atcm.domain.cart.CustomerCart;
 import com.kainos.atcm.event.ProductRemovedFromCustomerCart;
 import com.kainos.atcm.repository.CustomerCartRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
 public class ProductRemovedFromCustomerCartHandler {
     private CustomerCartRepository customerCartRepository;
 
-    @Autowired
     public ProductRemovedFromCustomerCartHandler(CustomerCartRepository customerCartRepository) {
         this.customerCartRepository = customerCartRepository;
     }

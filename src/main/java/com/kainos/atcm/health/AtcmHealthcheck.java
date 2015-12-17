@@ -1,4 +1,4 @@
-package com.kainos.inspectacle.health;
+package com.kainos.atcm.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

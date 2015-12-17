@@ -1,13 +1,11 @@
 package com.kainos.atcm.repository;
 
 import com.kainos.atcm.domain.cart.CustomerCart;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
-@Component
 public class CustomerCartRepository {
     private HashMap<UUID, CustomerCart> customerCartStore = new HashMap<>();
 

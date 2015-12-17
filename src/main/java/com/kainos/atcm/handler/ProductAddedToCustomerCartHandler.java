@@ -6,20 +6,16 @@ import com.kainos.atcm.domain.product.Product;
 import com.kainos.atcm.event.ProductAddedToCustomerCart;
 import com.kainos.atcm.repository.CustomerCartRepository;
 import com.kainos.atcm.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
 public class ProductAddedToCustomerCartHandler {
 
     private CustomerCartRepository customerCartRepository;
-
     private ProductRepository productRepository;
 
-    @Autowired
+
     public ProductAddedToCustomerCartHandler(CustomerCartRepository customerCartRepository, ProductRepository productRepository) {
         this.customerCartRepository = customerCartRepository;
         this.productRepository = productRepository;
@@ -63,7 +59,7 @@ public class ProductAddedToCustomerCartHandler {
 
         Product productDeatils = this.productRepository.getProduct(productId);
 
-        if(productDeatils!=null){
+        if (productDeatils != null) {
             productToAdd.setDescription(productDeatils.getDescription());
             productToAdd.setCost(productDeatils.getCost());
             productToAdd.setName(productDeatils.getName());
