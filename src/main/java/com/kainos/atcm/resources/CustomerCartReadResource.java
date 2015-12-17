@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.xml.ws.http.HTTPException;
 import java.util.Collection;
 import java.util.UUID;
@@ -26,12 +27,13 @@ public class CustomerCartReadResource {
     @Timed
     @Path("/{cartId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public CustomerCart getSingleCart(@PathParam("cartId") String cartId) {
+    public Response getSingleCart(@PathParam("cartId") String cartId) {
+        Response response = Response.status(Response.Status.NOT_FOUND).build();
         CustomerCart customerCart = customerCartRepository.getCustomerCart(UUID.fromString(cartId));
-        if (customerCart == null) {
-            throw new HTTPException(404);
+        if (customerCart != null) {
+            response = Response.ok(customerCart).build();
         }
-        return customerCart;
+        return response;
     }
 
     @GET

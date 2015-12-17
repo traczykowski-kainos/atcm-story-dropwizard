@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.ws.http.HTTPException;
+import javax.ws.rs.core.Response;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,12 +25,15 @@ public class CustomerReadResource {
     @Path("/{customerId}")
     @Timed
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer cart(@PathParam("customerId") UUID customerId) {
+    public Response cart(@PathParam("customerId") UUID customerId) {
+        Response response = Response.status(Response.Status.NOT_FOUND).build();
+
         Optional<Customer> customer = customerRepository.getCustomer(customerId);
-        if (!customer.isPresent()) {
-            throw new HTTPException(404);
+        if (customer.isPresent()) {
+            response = Response.ok(customer.get()).build();
         }
-        return customer.get();
+
+        return response;
     }
 
 }
