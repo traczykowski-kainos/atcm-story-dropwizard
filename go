@@ -1,1 +1,2 @@
-./gradlew inspectacle-service:run
+./gradlew clean build test
+./gradlew run
