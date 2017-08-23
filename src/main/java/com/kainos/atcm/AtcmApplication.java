@@ -32,8 +32,10 @@ public class AtcmApplication extends Application<AtcmServiceConfiguration> {
         ProductRepository productRepository = new ProductRepository();
         EventStoreRepository eventStoreRepository = new EventStoreRepository();
         CustomerRepository customerRepository = new CustomerRepository();
+        CORSResponseFilter corsResponseFilter = new CORSResponseFilter();
 
         // Register Resources
+        environment.jersey().register(corsResponseFilter);
         environment.jersey().register(new StatusResource());
         environment.jersey().register(new CustomerCartReadResource(customerCartRepository));
         environment.jersey().register(new CustomerCartWriteResource(customerCartRepository, eventStoreRepository, new ProductAddedToCustomerCartHandler(customerCartRepository, productRepository), new ProductRemovedFromCustomerCartHandler(customerCartRepository)));
